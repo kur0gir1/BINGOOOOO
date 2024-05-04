@@ -2,69 +2,100 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #000000;
 }
 
-body {
+body{
   padding-top: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body:focus {
+body:focus{
   outline: none;
 }
 
-.container {
+.container{
   width: 100vw;
   display: flex;
   justify-content: center;
 }
 
-#tblBingo {
+#tblBingo{
   border-collapse: collapse;
-  height: 25rem;
+  height: 30rem;
   width: 25rem;
   text-align: center;
   font-size: 22pt;
+  font-weight: 600;
   cursor: pointer;
+  color: #fff;
 }
 
-#tblBingo td {
+#tblBingo td{
   padding: 0.3rem;
 }
 
-.cell-format {
+.cell-format{
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20%;
-  border: 0.5px solid #cccece;
+  border: 0.5px solid #ffffff;
+  font-weight: 400;
 }
 
-.cell-format:hover {
-  background-color: #cccece;
+.cell-format:hover{
+  background-color: #858585;
 }
 
-.letter-div {
+.letter-div{
   height: 20vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.letters-bingo {
+.letters-bingo{
   padding: 0 1.3rem;
   font-size: 40pt;
   display: none;
+  font-weight: 600;
 }
 
-.strickout {
+.strikeout{
   text-decoration: line-through;
-  color: #a6a3a3;
-  font-size: 18pt;
+  color: #3b3b3b;
   pointer-events: none;
 }
 
-.show-bingo {
+.show-bingo{
   display: inline;
+}
+
+.red{
+  color: red;
+}
+
+.orange{
+  color: orange;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.green{
+  color: green;
+}
+
+.blue{
+  color: blue;
+}
+
+.youWin{
+  text-align: center;
+  font-size: 50px;
+  font-weight: 600;
+  color: #fff;
 }

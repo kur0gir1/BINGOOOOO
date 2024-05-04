@@ -1,5 +1,6 @@
 const table = document.querySelector("#tblBingo")
 const letter = document.querySelectorAll(".letters-bingo")
+const win = document.querySelector(".youWin")
 
 const winningPositions = [
     [0, 1, 2, 3, 4],
@@ -11,10 +12,12 @@ const winningPositions = [
     [1, 6, 11, 16, 21],
     [2, 7, 12, 17, 22],
     [3, 8, 13, 18, 23],
-    [4, 9, 14, 19, 24]
+    [4, 9, 14, 19, 24],
+    [0, 6, 12, 18, 24],
+    [4, 8, 12, 16, 20]
 ]
 
-let arr = Array.apply(null, { length: 26 }).map(Number.call, Number);
+let arr = Array.apply(null, { length: 76 }).map(Number.call, Number);
 
 arr.shift()
 shuffle(arr);
@@ -58,15 +61,17 @@ const cell = document.querySelectorAll(".main-table-cell");
 let winningIterator = 0
 cell.forEach(e => {
     e.addEventListener("click", () => {
-        e.classList.add("strickout");
+        e.classList.toggle("strikeout");
 
         if(matchWin()) {
             letter[winningIterator].classList.add("show-bingo");
 
             winningIterator++;
             if(winningIterator === 5) {
-                alert('B I N G O')
+              win.textContent = "CONGRATULATIONS !!! YOU WIN !!!";  
+              setTimeout(function(){
                 location.reload();
+              }, 5000)
             }
         }
     })
@@ -78,7 +83,7 @@ function matchWin() {
     return winningPositions.some(combination => {
         let ite = 0;
         combination.forEach(index => {
-            if(cell[index].classList.contains("strickout")) ite++;
+            if(cell[index].classList.contains("strikeout")) ite++;
         })
 
         if(ite === 5) {
@@ -87,7 +92,7 @@ function matchWin() {
         }
 
         return combination.every(index => {
-            return cell[index].classList.contains("strickout")
+            return cell[index].classList.contains("strikeout")
         })
     })
 }
