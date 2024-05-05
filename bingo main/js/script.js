@@ -1,7 +1,6 @@
 const table = document.querySelector("#tblBingo")
 const letter = document.querySelectorAll(".letters-bingo")
 const win = document.querySelector(".youWin")
-const reroll = document.querySelector("#reroll")
 
 const winningPositions = [
     [0, 1, 2, 3, 4],
