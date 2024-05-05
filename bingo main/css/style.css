@@ -8,6 +8,8 @@
 body{
   padding-top: 30px;
   font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 body:focus{
@@ -33,6 +35,8 @@ body:focus{
 
 #tblBingo td{
   padding: 0.3rem;
+  font-weight: 900;
+  font-size: 42px;
 }
 
 .cell-format{
@@ -41,12 +45,14 @@ body:focus{
   justify-content: center;
   align-items: center;
   border-radius: 20%;
-  border: 0.5px solid #ffffff;
-  font-weight: 400;
+  border: 5px solid #ffffff;
+  transition: 0.2s ease-in-out;
+  font-size: 32px;
 }
 
 .cell-format:hover{
-  background-color: #858585;
+  background-color: #fff;
+  color: #000;
 }
 
 .letter-div{
@@ -60,7 +66,7 @@ body:focus{
   padding: 0 1.3rem;
   font-size: 40pt;
   display: none;
-  font-weight: 600;
+  font-weight: 900;
 }
 
 .strikeout{
@@ -93,9 +99,29 @@ body:focus{
   color: blue;
 }
 
+.congrats{
+  width: 100%;
+  overflow: hidden;
+  background: rgb(255,0,0);
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,134,0,1) 20%, rgba(255,240,0,1) 40%, rgba(0,255,0,1) 60%, rgba(0,0,255,1) 80%, rgba(157,77,238,1) 100%);
+}
+
 .youWin{
   text-align: center;
   font-size: 50px;
-  font-weight: 600;
-  color: #fff;
+  font-weight: 900;
+  color: #000000;
+  background: rgba(255, 0, 0, 0);
+  background: linear-gradient(90deg, rgba(255, 0, 0, 0) 0%, rgba(255, 136, 0, 0) 20%, rgba(255, 238, 0, 0) 40%, rgba(0, 255, 0, 0) 60%, rgba(0, 0, 255, 0) 80%, rgba(157, 77, 238, 0) 100%);
+  animation: marquee 5s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% { 
+    transform: translateX(-100%);
+  }
 }

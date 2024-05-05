@@ -58,20 +58,20 @@ for (i = 0; i < 5; i++) {
 }
 
 const cell = document.querySelectorAll(".main-table-cell");
-let winningIterator = 0
+let winningCondition = 0
 cell.forEach(e => {
     e.addEventListener("click", () => {
         e.classList.toggle("strikeout");
 
         if(matchWin()) {
-            letter[winningIterator].classList.add("show-bingo");
+            letter[winningCondition].classList.add("show-bingo");
 
-            winningIterator++;
-            if(winningIterator === 5) {
-              win.textContent = "CONGRATULATIONS !!! YOU WIN !!!";  
-              setTimeout(function(){
+            winningCondition++;
+            if(winningCondition === 5) {
+                win.textContent = "CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!!";  
+                setTimeout(function(){
                 location.reload();
-              }, 5000)
+                }, 5000)
             }
         }
     })
