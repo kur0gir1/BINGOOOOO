@@ -1,8 +1,6 @@
 const generate = document.getElementById('number');
 const generateButton = document.getElementById('generateButton');
 const resetButton = document.getElementById('resetButton')
-const easy = document.getElementById('easy')
-const hard = document.getElementById('hard')
 const displayedNumbers = new Set();
 
 function generateNumber() {
