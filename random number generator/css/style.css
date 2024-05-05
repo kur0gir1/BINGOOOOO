@@ -5,6 +5,7 @@
   color: #fff;
   background-color: #000;
   font-family: 'Montserrat';
+  user-select: none;
 }
 
 .container{
