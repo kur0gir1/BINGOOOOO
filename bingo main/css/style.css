@@ -4,6 +4,7 @@
   box-sizing: border-box;
   background-color: #000000;
   user-select: none;
+  color: #fff;
 }
 
 body{
@@ -22,6 +23,7 @@ body:focus{
   display: flex;
   justify-content: center;
 }
+
 
 #tblBingo{
   border-collapse: collapse;

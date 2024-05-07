@@ -1,6 +1,6 @@
-const table = document.querySelector("#tblBingo")
-const letter = document.querySelectorAll(".letters-bingo")
-const win = document.querySelector(".youWin")
+const table = document.querySelector("#tblBingo");
+const letter = document.querySelectorAll(".letters-bingo");
+const win = document.querySelector(".youWin");
 
 const winningPositions = [
     [0, 1, 2, 3, 4],
@@ -15,47 +15,58 @@ const winningPositions = [
     [4, 9, 14, 19, 24],
     [0, 6, 12, 18, 24],
     [4, 8, 12, 16, 20]
-]
+];
 
-let arr = Array.apply(null, { length: 76 }).map(Number.call, Number);
+let arr = [];
 
-arr.shift()
+for (let i = 0; i < 5; i++) {
+    const columnNumbers = [];
+    const min = i * 15 + 1; 
+    const max = (i + 1) * 15; 
+    const columnRange = Array.from({ length: 15 }, (_, index) => min + index);
+    columnNumbers.push(...columnRange);
+    shuffle(columnNumbers);
+    arr.push(columnNumbers);
+}
+
+arr = transpose(arr);
+
 shuffle(arr);
+
+populateTable();
 
 function shuffle(arr) {
     let currentIndex = arr.length, randomIndex;
-
     while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-
         [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]];
     }
-
-    return arr;
 }
 
-let iterator = 0;
+function transpose(matrix) {
+    return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+}
 
-for (i = 0; i < 5; i++) {
-    let tr = document.createElement("tr")
-    table.appendChild(tr)
-
-    for (j = 0; j < 5; j++) {
-        let td = document.createElement("td")
-        td.id = arr[iterator].toString()
-        td.style.height = "20%"
-        td.style.width = "20%"
-        td.classList.add("main-table-cell")
-
-        let div = document.createElement("div")
-        div.classList.add("cell-format")
-        div.textContent = arr[iterator].toString()
-        td.appendChild(div)
-        tr.appendChild(td)
-        iterator++;
+function populateTable() {
+    for (let i = 0; i < 5; i++) {
+        const tr = document.createElement("tr");
+        table.appendChild(tr);
+        for (let j = 0; j < 5; j++) {
+            const td = document.createElement("td");
+            td.id = arr[i][j].toString();
+            td.style.height = "20%";
+            td.style.width = "20%";
+            td.classList.add("main-table-cell");
+            const div = document.createElement("div");
+            div.classList.add("cell-format");
+            div.textContent = arr[i][j].toString();
+            td.appendChild(div);
+            tr.appendChild(td);
+        }
     }
 }
+
 
 const cell = document.querySelectorAll(".main-table-cell");
 let winningCondition = 0
