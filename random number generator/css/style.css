@@ -12,16 +12,53 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 }
 
-h1{
+#record{
+  width: 20%;
+  height: 800px;
+  display: flex;
+  flex-flow: column wrap;
+  border: 2px solid white;
+  padding: 1%;
+}
+
+#record h2{
+  width: 100%;
+  height: 25px;
+  text-align: center;
+}
+
+#results{
+  width: 100%;
+  height: 725px;
+  display: flex;
+  flex-flow: column wrap;
+  flex: 1;
+  padding: 5px;
+  text-align: center;
+}
+
+#results p{
+  font-size: 22px;
+}
+
+.generator{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.generator h1{
   font-size: 48px;
 }
 
-p{
+.generator p{
   font-size: 450px;
   font-weight: 600;
 }

@@ -2,6 +2,8 @@ const generate = document.getElementById('number');
 const generateButton = document.getElementById('generateButton');
 const resetButton = document.getElementById('resetButton')
 const displayedNumbers = new Set();
+const draws = document.getElementById('draws')
+const records = document.getElementById('results')
 
 function generateNumber() {
   let count = 0; 
@@ -13,7 +15,12 @@ function generateNumber() {
       displayedNumbers.add(number);
       generate.textContent = number;
 
-      console.log(displayedNumbers)
+      let p = document.createElement('p');
+      p.id = 'draws';
+      p.textContent = number;
+      records.appendChild(p);
+
+      console.log(displayedNumbers);
       return; 
     }
   }
@@ -23,8 +30,8 @@ generateButton.addEventListener('click', generateNumber);
 
 function resetCount() {
   displayedNumbers.clear();
+  records.innerHTML = ""
   generate.textContent = "00"; 
 }
 
-generateButton.addEventListener('click', generateNumber);
 resetButton.addEventListener('click', resetCount);

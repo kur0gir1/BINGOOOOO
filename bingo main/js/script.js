@@ -34,7 +34,7 @@ arr = transpose(arr);
 
 shuffle(arr);
 
-populateTable();
+fillTable();
 
 function shuffle(arr) {
     let currentIndex = arr.length, randomIndex;
@@ -49,7 +49,7 @@ function transpose(matrix) {
     return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
 }
 
-function populateTable() {
+function fillTable() {
     for (let i = 0; i < 5; i++) {
         const tr = document.createElement("tr");
         table.appendChild(tr);
