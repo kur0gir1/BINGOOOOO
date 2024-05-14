@@ -1,0 +1,167 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #000000;
+  user-select: none;
+  color: #fff;
+}
+
+body{
+  width: 100%;
+  padding: 30px;
+  font-family: 'Montserrat', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body:focus{
+  outline: none;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+#tblBingo{
+  border-collapse: collapse;
+  height: 30rem;
+  width: 25rem;
+  text-align: center;
+  font-size: 22pt;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+}
+
+#tblBingo td{
+  padding: 0.3rem;
+  font-weight: 900;
+  font-size: 42px;
+}
+
+.cell-format{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20%;
+  border: 5px solid #ffffff;
+  transition: 0.2s ease-in-out;
+  font-size: 32px;
+}
+
+.cell-format:hover{
+  background-color: #fff;
+  color: #000;
+}
+
+.letter-div{
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.letters-bingo{
+  padding: 0 1.3rem;
+  font-size: 40pt;
+  display: none;
+  font-weight: 900;
+}
+
+.strikeout{
+  text-decoration: line-through;
+  filter: brightness(40%);
+}
+
+.show-bingo{
+  display: inline;
+}
+
+.red{
+  color: red;
+}
+
+.orange{
+  color: orange;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.green{
+  color: green;
+}
+
+.blue{
+  color: blue;
+}
+
+.congrats{
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+  background: rgb(255,0,0);
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,134,0,1) 20%, rgba(255,240,0,1) 40%, rgba(0,255,0,1) 60%, rgba(0,0,255,1) 80%, rgba(157,77,238,1) 100%);
+  margin-bottom: 100px;
+}
+
+.youWin{
+  display: none;
+  height: 120px;
+  text-align: center;
+  font-size: 100px;
+  font-weight: 900;
+  color: #000000;
+  background: rgba(255, 0, 0, 0);
+  background: linear-gradient(90deg, rgba(255, 0, 0, 0) 0%, rgba(255, 136, 0, 0) 20%, rgba(255, 238, 0, 0) 40%, rgba(0, 255, 0, 0) 60%, rgba(0, 0, 255, 0) 80%, rgba(157, 77, 238, 0) 100%);
+  animation: marquee 5s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% { 
+    transform: translateX(-100%);
+  }
+}
+
+.rules{
+  width: 60%;
+  height: auto;
+  border: 2px solid white;
+  padding: 0.5%;
+  margin-top: 100px;
+}
+
+.rules h2{
+  text-align: center;
+}
+
+.list-of-rules{
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  padding: 1%;
+}
+
+.how-to-play h3, ul li{
+  width: 100%;
+  list-style-type:none;
+}
+
+.how-to-win h3, ul li{
+  width: 100%;
+  margin-top: 5px;
+}
