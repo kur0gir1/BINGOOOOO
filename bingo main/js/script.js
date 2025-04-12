@@ -70,44 +70,66 @@ function fillTable() {
 
 
 const cell = document.querySelectorAll(".main-table-cell");
-let winningCondition = 0
+let winningCondition = 0;
+
 cell.forEach(e => {
     e.addEventListener("click", () => {
         e.classList.toggle("strikeout");
 
-        if(matchWin()) {
-            letter[winningCondition].classList.add("show-bingo");
+        const allMarked = Array.from(cell).every(el =>
+            el.classList.contains("strikeout")
+        );
 
-            winningCondition++;
-            if(winningCondition === 5) {
-                win.textContent = "CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!! CONGRATULATIONS !!! YOU WIN !!!";  
-                setTimeout(function(){
-                location.reload();
-                }, 5000)
+        if (matchWin()) {
+            if (winningCondition < 4) {
+                letter[winningCondition].classList.add("show-bingo");
+                winningCondition++;
             }
         }
-    })
+
+        if (allMarked) {
+            // Show the final "O"
+            if (winningCondition === 4) {
+                letter[4].classList.add("show-bingo");
+                winningCondition++;
+            }
+
+            // Show win text
+            win.textContent = "🎉 BLACKOUT BINGO! YOU WIN! 🎉".repeat(5);
+        }
+    });
 })
 
 
 function matchWin() {
     const cell = document.querySelectorAll(".main-table-cell");
 
-    return winningPositions.some(combination => {
-        let ite = 0;
-        combination.forEach(index => {
-            if(cell[index].classList.contains("strikeout")) ite++;
-        })
+    // First check for blackout (all 25 are strikeout)
+    const allMarked = Array.from(cell).every(e =>
+        e.classList.contains("strikeout")
+    );
 
-        if(ite === 5) {
-            let indexWin = winningPositions.indexOf(combination);
-            winningPositions.splice(indexWin, 1)
+    if (allMarked) {
+        return true; // Final win condition
+    }
+
+    // If we already reached 4 patterns, don't process more
+    if (winningCondition >= 4) return false;
+
+    // Check for pattern-based wins (row/col/diagonal)
+    return winningPositions.some((combination, i) => {
+        const isWin = combination.every(index =>
+            cell[index].classList.contains("strikeout")
+        );
+
+        if (isWin) {
+            winningPositions.splice(i, 1); // prevent reusing the same pattern
+            return true;
         }
 
-        return combination.every(index => {
-            return cell[index].classList.contains("strikeout")
-        })
-    })
+        return false;
+    });
 }
+
 
 console.log(arr)

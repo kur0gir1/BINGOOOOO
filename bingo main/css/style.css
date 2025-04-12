@@ -130,34 +130,3 @@ body:focus{
     transform: translateX(-100%);
   }
 }
-
-.rules{
-  width: 60%;
-  height: auto;
-  border: 2px solid white;
-  padding: 0.5%;
-  margin-top: 100px;
-}
-
-.rules h2{
-  text-align: center;
-}
-
-.list-of-rules{
-  width: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  margin-top: 10px;
-  padding: 1%;
-}
-
-.how-to-play h3, ul li{
-  width: 100%;
-  list-style-type:none;
-}
-
-.how-to-win h3, ul li{
-  width: 100%;
-  margin-top: 5px;
-}
