@@ -96,6 +96,7 @@ cell.forEach(e => {
 
             // Show win text
             win.textContent = "🎉 BLACKOUT BINGO! YOU WIN! 🎉".repeat(5);
+            showWinModal(); 
         }
     });
 })
@@ -110,9 +111,10 @@ function matchWin() {
     );
 
     if (allMarked) {
-        return true; // Final win condition
+        win.textContent = "🎉 BLACKOUT BINGO! YOU WIN! 🎉".repeat(5);
+        showWinModal();
+        return true; 
     }
-
     // If we already reached 4 patterns, don't process more
     if (winningCondition >= 4) return false;
 
@@ -131,5 +133,95 @@ function matchWin() {
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    MicroModal.init({
+        disableScroll: true,
+        disableFocus: false,
+        awaitOpenAnimation: true,
+        awaitCloseAnimation: true,
+        debugMode: true,
+        onShow: modal => {
+            // Focus the first focusable element in the modal
+            const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (firstFocusable) {
+                firstFocusable.focus();
+            }
+            console.log('Modal shown:', modal.id);
+        },
+        onClose: modal => {
+            // Return focus to the trigger button
+            const trigger = document.getElementById('winTrigger');
+            if (trigger) {
+                trigger.focus();
+            }
+            console.log('Modal closed:', modal.id);
+        }
+    });
+});
 
-console.log(arr)
+// Function to show modal when BINGO is achieved
+function showWinModal() {
+    try {
+        // 1. Collect and group winning numbers by BINGO columns
+        const columns = [[], [], [], [], []]; // B, I, N, G, O
+
+        document.querySelectorAll('.main-table-cell.strikeout').forEach(cell => {
+            const numberDiv = cell.querySelector('.cell-format');
+            if (numberDiv) {
+                const num = parseInt(numberDiv.textContent);
+                if (num >= 1 && num <= 15) columns[0].push(num);      // B
+                else if (num >= 16 && num <= 30) columns[1].push(num); // I
+                else if (num >= 31 && num <= 45) columns[2].push(num); // N
+                else if (num >= 46 && num <= 60) columns[3].push(num); // G
+                else if (num >= 61 && num <= 75) columns[4].push(num); // O
+            }
+        });
+
+        // 2. Build the table
+        const numbersList = document.getElementById('winningNumbersList');
+        numbersList.innerHTML = '';
+
+        const table = document.createElement('table');
+        table.className = 'winning-numbers-table';
+
+        // Header
+        const headerRow = document.createElement('tr');
+        ['B', 'I', 'N', 'G', 'O'].forEach(letter => {
+            const th = document.createElement('th');
+            th.className = `bingo-letter ${letter.toLowerCase()}`;
+            th.textContent = letter;
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+
+        // Find the max column length for rows
+        const maxRows = Math.max(...columns.map(col => col.length));
+
+        // Rows
+        for (let row = 0; row < maxRows; row++) {
+            const tr = document.createElement('tr');
+            for (let col = 0; col < 5; col++) {
+                const td = document.createElement('td');
+                td.className = 'winning-number';
+                td.textContent = columns[col][row] !== undefined ? columns[col][row] : '';
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+
+        numbersList.appendChild(table);
+
+        // Show the modal
+        document.getElementById('winTrigger').click();
+    } catch (error) {
+        console.error('Modal error:', error);
+        MicroModal.show('modal-1');
+    }
+}
+
+document.addEventListener('keypress', (e) => {
+    if (e.key === 't') {
+        console.log('Test modal trigger');
+        showWinModal();
+    }
+});
