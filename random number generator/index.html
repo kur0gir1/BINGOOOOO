@@ -6,6 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
   <title>SIPD BINGO NUMBER DRAWS</title>
@@ -25,8 +26,36 @@
     <div class="button-container">
       <button id="generateButton">Generate Number</button>
       <button id="resetButton">Reset Numbers</button>
+      <button id="winnerButton" data-micromodal-trigger="modal-1" >Do we have a winner?</button>
+      
     </div>
   </div>
+  </div>
+
+  <!-- Modal for Winner Bingo Card -->
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1">
+      <div class="modal-content modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <button class="close modal__close" id="closeModal" aria-label="Close modal">&times;</button>
+        <h2 class="modal__title" id="modal-1-title">Bingo Card Format</h2>
+        <div class="bingo-table-wrapper" style="width:100%; max-height:60vh; overflow:auto;">
+          <table id="bingoCardTable" class="bingo-card-table winning-numbers-table">
+            <thead>
+              <tr>
+                <th class="bingo-letter b">B</th>
+                <th class="bingo-letter i">I</th>
+                <th class="bingo-letter n">N</th>
+                <th class="bingo-letter g">G</th>
+                <th class="bingo-letter o">O</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Bingo card rows will be inserted here by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

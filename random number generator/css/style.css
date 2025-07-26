@@ -104,3 +104,376 @@ body{
   color: #000;
 }
 
+#winnerButton{
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 800;
+  transition: 0.3s all ease-in-out;
+  margin-bottom: 20px;
+}
+
+#winnerButton:hover{
+  background-color: #ffffff;
+  color: #000;
+}
+
+/**************************\
+  Basic Modal Styles
+\**************************/
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal__container {
+  position: relative;
+  background: #000000;
+  padding: clamp(25px, 5vw, 40px);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal__container:focus {
+  outline: none;
+}
+
+.modal__header {
+  display: flex;
+    justify-content: center;  /* Changed from space-between to center */
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;  /* Added for absolute positioning of close button */
+}
+
+.modal__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  background: linear-gradient(
+      90deg,
+      #ff0000 0%,
+      #ff8600 16.66%,
+      #fff000 33.33%,
+      #00ff00 50%,
+      #0000ff 66.66%,
+      #9d4dee 83.33%,
+      #ff0000 100%
+  );
+  background-size: 300% 100%;
+  animation: rainbow 4s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  width: 100%;
+}
+
+@keyframes rainbow {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  z-index: 10;
+  transition: none;
+}
+
+
+.modal__close:hover,
+.modal__close:focus {
+  color: #ff0000;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: color 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+.modal__content {
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0;
+  line-height: 1.6;
+  color: #fff;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-align: center;
+}
+
+.modal__content p {
+  margin: 0;
+}
+
+.modal__btn {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.2rem, 3vw, 1.5rem);
+  margin: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal__btn:focus, .modal__btn:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.modal__btn:focus,
+.modal__close:focus {
+  outline: 2px solid #00449e;
+  outline-offset: 2px;
+}
+
+.modal__btn-primary {
+  background: linear-gradient(90deg, #ff0000, #ff8600);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 82, 0, 0.35);
+}
+
+.modal__btn-primary:hover {
+  background: linear-gradient(90deg, #ff8600, #ff0000);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 82, 0, 0.45);
+}
+
+.modal__btn:not(.modal__btn-primary) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(5px);
+}
+
+.modal__btn:not(.modal__btn-primary):hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Hide modal from screen readers when closed */
+.modal[aria-hidden="true"] {
+  display: none;
+}
+
+/* Ensure modal is visible to screen readers when open */
+.modal[aria-hidden="false"] {
+  display: block;
+}
+
+/**************************\
+  Demo Animation Style
+\**************************/
+@keyframes mmfadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+    from { opacity: 1; }
+      to { opacity: 0; }
+}
+
+@keyframes mmslideIn {
+  from { transform: translateY(15%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+  display: none;
+}
+
+.micromodal-slide.is-open {
+  display: block;
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__container {
+  animation: mmslideIn .4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__container {
+  animation: mmslideOut .3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+  will-change: transform;
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width: 480px) {
+  .modal__container {
+    padding: clamp(20px, 4vw, 25px);
+  }
+
+  .modal__header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  .modal__btn {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+.winning-numbers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.winning-numbers-header {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.winning-numbers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.bingo-letter {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.bingo-letter.b { background: #ff0000; }
+.bingo-letter.i { background: #ff8600; }
+.bingo-letter.n { background: #fff000; }
+.bingo-letter.g { background: #00ff00; }
+.bingo-letter.o { background: #0000ff; }
+
+.winning-number {
+    background: rgba(32, 32, 32, 0.95);
+    border-radius: 8px;
+    padding: 12px;
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+#winningNumbers h4 {
+    color: #fff;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.winning-numbers-table {
+    width: 100%;
+    border-spacing: 10px;
+    border-collapse: separate;
+    margin: 20px auto;
+}
+
+.winning-numbers-table th {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.winning-numbers-table th.b { background: #ff0000; }
+.winning-numbers-table th.i { background: #ff8600; }
+.winning-numbers-table th.n { background: #fff000; }
+.winning-numbers-table th.g { background: #00ff00; }
+.winning-numbers-table th.o { background: #0000ff; }
+
+.winning-numbers-table td {
+    background: rgba(32, 32, 32, 0.95);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 0;
+}

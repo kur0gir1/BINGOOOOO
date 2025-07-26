@@ -135,7 +135,7 @@ function matchWin() {
 
 document.addEventListener('DOMContentLoaded', () => {
     MicroModal.init({
-        disableScroll: true,
+        disableScroll: false,
         disableFocus: false,
         awaitOpenAnimation: true,
         awaitCloseAnimation: true,
@@ -219,9 +219,9 @@ function showWinModal() {
     }
 }
 
-document.addEventListener('keypress', (e) => {
-    if (e.key === 't') {
-        console.log('Test modal trigger');
-        showWinModal();
-    }
-});
+// document.addEventListener('keypress', (e) => {
+//     if (e.key === 't') {
+//         console.log('Test modal trigger');
+//         showWinModal();
+//     }
+// });
